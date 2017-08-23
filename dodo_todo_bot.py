@@ -22,6 +22,13 @@ def get_updates(offset=None): #offset identifies the first update to be returned
     js=get_json_from_url(url)
     return js
 
+# calculates the highest ID of all updates from getUpdates
+def get_last_update_id(updates):
+    update_ids=[]
+    for update in updates['result']:
+        update_ids.append(int(update['update_id']))
+    return max(update_ids)
+
 def get_last_chat_id_and_text(updates):
     num_updates=len(updates['result'])
     last_update=num_updates-1
